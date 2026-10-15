@@ -1,0 +1,89 @@
+======================================================================
+PREUVES DU LIVRABLE - TP DevOps : Campus Tasks (Atelier 1)
+======================================================================
+Realise sous WSL2 Ubuntu (jambe /mnt/c), dans ~/devops-l3/atelier-01/campus-tasks
+Git 2.53.0 (>= 2.40 OK)
+
+======================================================================
+1) git status
+======================================================================
+On branch main
+nothing to commit, working tree clean
+
+======================================================================
+2) git log --oneline --graph --decorate --all -n 12
+======================================================================
+*   da86805 (HEAD -> main) merge: integrer la documentation du point de sante
+|\  
+| * 974f911 docs: documenter le point de sante
+|/  
+* 6f6a017 docs: ajouter les instructions de demarrage
+* c0c0e6b docs: decrire l architecture initiale
+* a5bd98e chore: initialiser le projet
+
+======================================================================
+3) git remote -v
+======================================================================
+(Aucun remote configure pour l instant - publication distante en attente
+ des identifiants de la plateforme GitHub/GitLab de l etudiant.
+ Commandes a executer une fois le depot distant cree :
+   git remote add origin https://PLATEFORME/UTILISATEUR/campus-tasks.git
+   git push -u origin main)
+
+======================================================================
+4) git ls-files
+======================================================================
+.env.example
+.gitignore
+README.md
+docs/architecture.md
+
+======================================================================
+5) git check-ignore -v .env
+======================================================================
+.gitignore:1:.env	.env
+
+======================================================================
+COMMITS ATOMIQUES (5 au total, historique lisible)
+======================================================================
+1. chore: initialiser le projet        (README.md, .gitignore, .env.example)
+2. docs: decrire l architecture initiale (docs/architecture.md)
+3. docs: ajouter les instructions de demarrage (README.md)
+4. docs: documenter le point de sante  (README.md, sur branche feature/healthcheck)
+5. merge: integrer la documentation du point de sante (merge --no-ff, fusion visible)
+
+======================================================================
+FUSION VISIBLE DANS LE GRAPHE
+======================================================================
+Oui. Le graphe montre une fusion (merge commit da86805 avec la branche
+feature/healthcheck 974f911), et non une ligne droite. La branche a ete
+supprimee apres fusion (git branch -d feature/healthcheck).
+
+======================================================================
+INCIDENT .env (resolu)
+======================================================================
+- .env cree avec un faux mot de passe, force-indexe (git add -f .env)
+- Retire de l index SANS supprimer le disque : git rm --cached .env
+- Verification : git check-ignore -v .env => .gitignore:1:.env .env  (ignore OK)
+- Le fichier .env existe toujours sur le disque
+- Aucun commit ne contient .env (le secret n est jamais entre dans l historique)
+- .env est bien present dans .gitignore (ligne 1 : .env)
+
+======================================================================
+FICHIERS PRESENTS DANS LE DEPOT
+======================================================================
+README.md
+.env.example (exemple uniquement, sans vrai secret)
+.gitignore
+docs/architecture.md
+(.env est ignore et non suivi)
+
+======================================================================
+REPERTOIRE DE TRAVAIL (WSL2)
+======================================================================
+/home/gigabytemehdinux/devops-l3/atelier-01/campus-tasks
+(et non /mnt/c, conformement aux consignes)
+
+======================================================================
+FIN DES PREUVES
+======================================================================
